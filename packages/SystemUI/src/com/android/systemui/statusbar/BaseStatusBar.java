@@ -2329,15 +2329,6 @@ public abstract class BaseStatusBar extends SystemUI implements
                 || notification.vibrate != null;
         boolean isHighPriority = sbn.getScore() >= INTERRUPTION_THRESHOLD;
         boolean isFullscreen = notification.fullScreenIntent != null;
-<<<<<<< HEAD
-        boolean hasTicker = mHeadsUpTicker && !TextUtils.isEmpty(notification.tickerText);
-        boolean isAllowed = notification.extras.getInt(Notification.EXTRA_AS_HEADS_UP,
-                Notification.HEADS_UP_ALLOWED) != Notification.HEADS_UP_NEVER;
-        boolean accessibilityForcesLaunch = isFullscreen
-                && mAccessibilityManager.isTouchExplorationEnabled();
-
-        boolean interrupt = (isFullscreen || (isHighPriority && (isNoisy || hasTicker)))
-=======
         int asHeadsUp = notification.extras.getInt(Notification.EXTRA_AS_HEADS_UP,
                 Notification.HEADS_UP_ALLOWED);
         boolean isAllowed = asHeadsUp != Notification.HEADS_UP_NEVER;
@@ -2350,7 +2341,6 @@ public abstract class BaseStatusBar extends SystemUI implements
 
         boolean interrupt = (isFullscreen || (isHighPriority && isNoisy)
                 || asHeadsUp == Notification.HEADS_UP_REQUESTED)
->>>>>>> 20e3e9a... Frameworks: Slim heads up customizations for LP (1/2)
                 && isAllowed
                 && !accessibilityForcesLaunch
                 && mPowerManager.isScreenOn()
